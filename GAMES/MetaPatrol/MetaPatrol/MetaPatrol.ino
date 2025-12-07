@@ -141,8 +141,8 @@ byte WIDTH;
 byte HEIGHT;
 byte ymin = 36;
 struct Camera camera;
-const int XMap[80] = {1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3};
-const int YMap[50] = {3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0};
+const PROGMEM int XMap[80] = {1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3};
+const PROGMEM int YMap[50] = {3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0};
 
 
 // FIN DES VARIABLES #########################################################
@@ -295,17 +295,17 @@ const PROGMEM uint8_t img_rockData[] = {
 };
 Image img_rock(img_rockData);
 
-const Gamebuino_Meta::Sound_FX sfx_shoot[] = {
+const PROGMEM Gamebuino_Meta::Sound_FX sfx_shoot[] = {
   {Gamebuino_Meta::Sound_FX_Wave::SQUARE,0,255,-15,25,24,8},
 };
 
-const Gamebuino_Meta::Sound_FX sfx_explosion[] = {
+const PROGMEM Gamebuino_Meta::Sound_FX sfx_explosion[] = {
   {Gamebuino_Meta::Sound_FX_Wave::SQUARE,1,180,25,35,100,2},
   {Gamebuino_Meta::Sound_FX_Wave::NOISE,1,200,0,19,112,9},
   {Gamebuino_Meta::Sound_FX_Wave::NOISE,0,90,0,20,0,16},
 };
 
-const Gamebuino_Meta::Sound_FX sfx_blop[] = {
+const PROGMEM Gamebuino_Meta::Sound_FX sfx_blop[] = {
   {Gamebuino_Meta::Sound_FX_Wave::SQUARE,0,255,30,30,100,13},
 };
 
@@ -319,7 +319,13 @@ const Gamebuino_Meta::Sound_FX sfx_blop[] = {
 void setup() {
     gb.begin();
 
-    best_score = gb.save.get(0);
+    if(gb.save.get(1) == 10 && gb.save.get(2) == 20)
+       best_score = gb.save.get(0);
+    else{
+       gb.save.set(0, 0);
+       gb.save.set(1, 10);
+       gb.save.set(2, 20);
+    }
 
     WIDTH = gb.display.width();
     HEIGHT = gb.display.height();
