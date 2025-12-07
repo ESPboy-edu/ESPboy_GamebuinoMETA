@@ -1,0 +1,26 @@
+Gamebuitro
+A Gamebuino Meta intro released at Outline 2024
+
+"It ain't much, but it's honest work."
+
+My most advanced code ever and my first serious experiment with C++ ;)
+All (poorly) coded from scratch except for the music player.
+
+
+Code & GFX: Exocet
+Music: Chavez & Josss
+Music player: PMF Player by JarkkoPFC, adapted by r043v/dph
+
+Many thanks to Chavez and Josss for making such a great tune for this little intro.
+
+
+Gamebuino Meta is a Arduino Zero-based handheld console:
+- Microchip ATSAMD21 ARM Cortex M0+ CPU
+- 32KB RAM
+- 80x64 resolution
+ 
+
+
+
+
+
